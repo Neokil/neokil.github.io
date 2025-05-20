@@ -27,26 +27,61 @@
         text-align: center;
         list-style: none;
         padding: 0;
+        animation: clip-path-reveal-1 3s ease infinite;
+        animation-iteration-count: 1;
     }
     li {
         margin-bottom: 10px;
+        
     }
-    a:link {
+    a:link,a:visited {
         color: #D4D4D4;
         text-decoration: none;
         font-size: larger;
     }
-    a:link:hover {
+    a:hover {
         color: #569cd6;
+    }
+
+    #container{
+        position: relative;
+    }
+    #container:before {
+        content:  "";
+        position: absolute;
+        top:      calc( 100% - 2px );
+        width:    100%;
+        height:   4px;
+        background-color: #569cd6;
+        transform-origin: center center;
+        transform: scaleX( 0 );
+        
+        animation: line-animation 3s ease infinite;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes line-animation {
+        0% { transform: scaleX( 0 ); }
+        15% { transform: scaleX( 0 ); }
+        20%, 25% { transform: scaleX( 1 ); top: calc( 100% - 2px ); }
+        50% { transform: scaleX( 1 ); top: 0px; }
+        65%,100% { transform: scaleX( 0 ); top: 0px; }
+    }
+
+    @keyframes clip-path-reveal-1 {
+        0%, 25% { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); }
+        50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
     }
     </style>
     <title>Overview</title>
 </head>
 <body>
-    <ul>
-        <li><a href="https://blog.neokil.de" target="_self">&gt; Tech-Blog</a></li>
-        <li><a href="print-on-demand.html" target="_self">&gt; 3D-Print-On-Demand</a></li>
-        <li><a href="#" target="_self">&gt; Coming-Soon: The Tinkers Forge Etsy Store</a></li>
-    </ul>
+    <div id="container">
+        <ul>
+            <li><a href="https://blog.neokil.de" target="_self">&gt; Tech-Blog</a></li>
+            <li><a href="print-on-demand.html" target="_self">&gt; 3D-Print-On-Demand</a></li>
+            <li><a href="#" target="_self">&gt; Coming-Soon: The Tinkers Forge Etsy Store</a></li>
+        </ul>
+    </div>
 </body>
 </html>
